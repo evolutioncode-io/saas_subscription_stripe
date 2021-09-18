@@ -10,7 +10,26 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <br>
+    <hr>
+    <div class="flex-container" style="display: flex; flex-direction: row; justify-content: space-between">
+    <%# if user_signed_in? %>
+         <%= link_to "Posts", posts_path %>
+         <%#= link_to current_user.email, edit_user_registration_path %>
+         <%#= current_user.stripe_customer_id %>
+         <%#= link_to "Log out", destroy_user_session_path, method: :delete %>
+         <!-- <h1>Shopping cart</h1> -->
+         <%# @cart.each do |product| %>
+           <%#= product.name %>
+         <%# end %>
+         <%# if @cart.present? %>
+           <%# end %>
+    <%# end %>
+    </div>
+    <hr>
     <%= yield %>
   </body>
 </html>

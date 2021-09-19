@@ -20,6 +20,11 @@ bundle lock --add-platform ruby
 bundle lock --add-platform x86_64-linux  
 bundle
 gaa. gcmsg
+---
+EDITOR=vim rails credentials:edit
+add secret password / tokens
+<ESC> wq
+---
 heroku create
 heroku config:set RAILS_MASTER_KEY=`cat config/master.key`
 git push heroku main

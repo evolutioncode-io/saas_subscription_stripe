@@ -31,6 +31,9 @@ class WebhooksController < ApplicationController
     when 'customer.subscription.updated', 'customer.subscription.deleted', 'customer.subscription.created'
       subscription = event.data.object
       puts "event subscription received >>>>>>>>>>>>>>>>>>>>>> #{subscription}"
+      puts "subscription status >>>>>>>>>>>>>>>>>>>>>> #{subscription.status}"
+      puts "subscription plan >>>>>>>>>>>>>>>>>>>>>> #{subscription.items.data[0].price.lookup_key}"
+      puts "subscription current_period_end >>>>>>>>>>>>>>>>>>>>>> #{subscription.current_period_end}"
       @user = User.find_by(stripe_customer_id: subscription.customer)
       @user.update(
         subscription_status: subscription.status,

@@ -25,11 +25,12 @@ class WebhooksController < ApplicationController
     case event.type
     when 'customer.created'
       customer = event.data.object
-      puts "event received >>>>>>>>>>>>>>>>>>>>>> #{customer}"
+      puts "event customer received >>>>>>>>>>>>>>>>>>>>>> #{customer}"
       @user = User.find_by(email: customer.email)
       @user.update(stripe_customer_id: customer.id)
     when 'customer.subscription.updated', 'customer.subscription.deleted', 'customer.subscription.created'
       subscription = event.data.object
+      puts "event subscription received >>>>>>>>>>>>>>>>>>>>>> #{subscription}"
       @user = User.find_by(stripe_customer_id: subscription.customer)
       @user.update(
         subscription_status: subscription.status,

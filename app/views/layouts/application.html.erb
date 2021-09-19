@@ -19,6 +19,7 @@
       <%= link_to "Posts", posts_path %>
       <%= link_to "Pricing", pricing_path %>
     <% if user_signed_in? %>
+          <%= link_to "Stripe BillingPortal", billing_portal_create_path, method: :post, data: { disable_with: "validating..."} %>
          <%= link_to current_user.email, edit_user_registration_path %>
          <div class="">
            Stripe id:

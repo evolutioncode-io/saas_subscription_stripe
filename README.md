@@ -24,6 +24,7 @@ heroku create
 heroku config:set RAILS_MASTER_KEY=`cat config/master.key`
 git push heroku main
 heroku run rails db:migrate
+heroku run rake db:seed
 ---
 rails g scaffold Post title content:text premium:boolean --no-helper no--controller-specs --no-view-specs --no-test-framework --no-jbuilder
 rails db:migrate

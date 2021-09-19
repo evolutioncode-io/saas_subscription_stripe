@@ -11,6 +11,6 @@ class User < ApplicationRecord
   # Se le agrega al usuario el id dentro de Stripe
    after_create do
      customer = Stripe::Customer.create(email: self.email)
-     update(stripe_customer_id: customer.id)
+     # update(stripe_customer_id: customer.id)   << se movio a Webhooks
    end
 end

@@ -19,7 +19,10 @@
     <% if user_signed_in? %>
          <%= link_to "Posts", posts_path %>
          <%= link_to current_user.email, edit_user_registration_path %>
-         <%#= current_user.stripe_customer_id %>
+         <div class="">
+           Stripe id:
+            <%= current_user.stripe_customer_id %>
+         </div>
          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
          <div class="">
            Plan:

@@ -1,5 +1,7 @@
 # README
 
+https://subscriptions-rails-stripe.herokuapp.com/   < Live App
+
 rails new saas_subscription_stripe -d=postgresql
 cd saas_subscription_stripe
 git init
@@ -29,3 +31,5 @@ rails db:migrate
 rails db:seed
 rails generate devise:install
 rails generate devise User
+---
+rails g migration add_stripe_customer_id_to_users stripe_customer_id:string

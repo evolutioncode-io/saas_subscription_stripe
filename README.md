@@ -25,3 +25,7 @@ heroku run rails db:migrate
 ---
 rails g scaffold Post title content:text premium:boolean --no-helper no--controller-specs --no-view-specs --no-test-framework --no-jbuilder
 rails db:migrate
+---
+rails db:seed
+rails generate devise:install
+rails generate devise User

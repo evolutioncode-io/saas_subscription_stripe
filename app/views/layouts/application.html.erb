@@ -16,18 +16,24 @@
     <br>
     <hr>
     <div class="flex-container" style="display: flex; flex-direction: row; justify-content: space-between">
-    <%# if user_signed_in? %>
+    <% if user_signed_in? %>
          <%= link_to "Posts", posts_path %>
-         <%#= link_to current_user.email, edit_user_registration_path %>
+         <%= link_to current_user.email, edit_user_registration_path %>
          <%#= current_user.stripe_customer_id %>
-         <%#= link_to "Log out", destroy_user_session_path, method: :delete %>
-         <!-- <h1>Shopping cart</h1> -->
-         <%# @cart.each do |product| %>
-           <%#= product.name %>
-         <%# end %>
-         <%# if @cart.present? %>
-           <%# end %>
-    <%# end %>
+         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+         <div class="">
+           Plan:
+           <%= current_user.plan %>
+         </div>
+
+         <div class="">
+           Subscription status:
+           <%= current_user.subscription_status %>
+         </div>
+    <% else %>
+        <%= link_to "Log in", new_user_session_path %>
+        <%= link_to "Register", new_user_registration_path %>
+    <% end %>
     </div>
     <hr>
     <%= yield %>

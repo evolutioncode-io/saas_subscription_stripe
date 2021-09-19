@@ -41,3 +41,8 @@ rails c:   Stripe::Price.create(product: "prod_KFwTGUzbN68nyR", recurring: {inte
 
 rails c:   Stripe::Price.update("price_1JbQeQI2rsCLxTB1zVxsEzJD", lookup_key: "good_year")
            Stripe::Price.update("price_1JbQd2I2rsCLxTB1XUHwT9uE", lookup_key: "good_month")
+
+
+heroku run rails console   << para interactuar con los datos?
+heroku logs --tail         << para ver los logs de Heroku
+gem 'pry-byebug'

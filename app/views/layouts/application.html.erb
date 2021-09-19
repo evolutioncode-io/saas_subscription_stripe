@@ -18,6 +18,7 @@
     <div class="flex-container" style="display: flex; flex-direction: row; justify-content: space-between">
     <% if user_signed_in? %>
          <%= link_to "Posts", posts_path %>
+         <%= link_to "Pricing", pricing_path %>
          <%= link_to current_user.email, edit_user_registration_path %>
          <div class="">
            Stripe id:

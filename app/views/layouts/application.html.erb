@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://js.stripe.com/v3/"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -16,9 +16,9 @@
     <br>
     <hr>
     <div class="flex-container" style="display: flex; flex-direction: row; justify-content: space-between">
+      <%= link_to "Posts", posts_path %>
+      <%= link_to "Pricing", pricing_path %>
     <% if user_signed_in? %>
-         <%= link_to "Posts", posts_path %>
-         <%= link_to "Pricing", pricing_path %>
          <%= link_to current_user.email, edit_user_registration_path %>
          <div class="">
            Stripe id:

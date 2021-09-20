@@ -48,8 +48,8 @@ rails c:   Stripe::Price.update("price_1JbQeQI2rsCLxTB1zVxsEzJD", lookup_key: "g
            Stripe::Price.update("price_1JbQd2I2rsCLxTB1XUHwT9uE", lookup_key: "good_month")
 
 
-heroku run rails console   << para interactuar con los datos?
+heroku run rails console   << para interactuar con los datos
 heroku logs --tail         << para ver los logs de Heroku
-gem 'pry-byebug'
 ---
 <%= link_to "Stripe BillingPortal", billing_portal_create_path, method: :post, data: { disable_with: "validating..."} %>  << el boton no funciona mientras trae los datos
+---

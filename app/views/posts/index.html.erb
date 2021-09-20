@@ -2,29 +2,47 @@
 
 <h1>Posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Premium</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+Total Posts:
+<b><%= Post.count %></b>
+<br>
+Free Posts:
+<b><%= Post.free.count %></b>
+<br>
+Premium Posts:
+<b><%= Post.premium.count %></b>
+<p>
 
-  <tbody>
-    <% @posts.each do |post| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= post.premium %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th></th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Premium</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @posts.each_with_index do |post, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= post.title %></td>
+          <td>
+            <% if post.premium? && current_user.subscription_status != "active" %>
+              <%= link_to "SUBSCRIBE TO VIEW", pricing_path %>
+            <% else %>
+              <%= truncate(post.content, length: 17) %>
+            <% end %>
+          </td>
+          <td><%= post.premium %></td>
+          <td><%= link_to 'Show', post %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <br>
 

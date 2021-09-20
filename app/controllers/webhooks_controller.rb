@@ -12,6 +12,7 @@ class WebhooksController < ApplicationController
         payload, sig_header, Rails.application.credentials.dig(:stripe, :webhook)
       )
     rescue JSON::ParserError => e
+      # Invalid payload
       status 400
       return
     rescue Stripe::SignatureVerificationError => e
@@ -25,21 +26,20 @@ class WebhooksController < ApplicationController
     case event.type
     when 'customer.created'
       customer = event.data.object
-      puts "event customer received >>>>>>>>>>>>>>>>>>>>>> #{customer}"
       @user = User.find_by(email: customer.email)
       @user.update(stripe_customer_id: customer.id)
+      status 200
     when 'customer.subscription.updated', 'customer.subscription.deleted', 'customer.subscription.created'
       subscription = event.data.object
-      puts "event subscription received >>>>>>>>>>>>>>>>>>>>>> #{subscription}"
       puts "subscription status >>>>>>>>>>>>>>>>>>>>>> #{subscription.status}"
       puts "subscription plan >>>>>>>>>>>>>>>>>>>>>> #{subscription.items.data[0].price.lookup_key}"
-      puts "subscription current_period_end >>>>>>>>>>>>>>>>>>>>>> #{subscription.current_period_end}"
       @user = User.find_by(stripe_customer_id: subscription.customer)
       @user.update(
         subscription_status: subscription.status,
         plan: subscription.items.data[0].price.lookup_key,
         current_period_end: Time.at(subscription.current_period_end).to_datetime,
       )
+      status 200
     end
 
     render json: { message: 'success' }

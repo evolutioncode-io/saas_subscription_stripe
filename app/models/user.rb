@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :fullname, presence: true       
+  validates :fullname, presence: true
 
    def to_s
      email
@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   # Se le agrega al usuario el id dentro de Stripe
    after_create do
-     customer = Stripe::Customer.create(email: self.email)
+     customer = Stripe::Customer.create(email: self.email, name: self.fullname)
      # update(stripe_customer_id: customer.id)  >> se movio a webhooks
    end
 end

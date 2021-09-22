@@ -46,8 +46,9 @@ rails c:   Stripe::Product.create(name: 'Good')
 rails c:   Stripe::Price.create(product: "prod_KFwTGUzbN68nyR", recurring: {interval: 'month'}, currency: 'usd', unit_amount: 1000)
 rails c:   Stripe::Price.create(product: "prod_KFwTGUzbN68nyR", recurring: {interval: 'year'}, currency: 'usd', unit_amount: 10000)
 
-rails c:   Stripe::Price.update("price_1JbQeQI2rsCLxTB1zVxsEzJD", lookup_key: "good_year")
-           Stripe::Price.update("price_1JbQd2I2rsCLxTB1XUHwT9uE", lookup_key: "good_month")
+rails c:   
+Stripe::Price.update("price_1JbQeQI2rsCLxTB1zVxsEzJD", lookup_key: "good_year")
+Stripe::Price.update("price_1JbQd2I2rsCLxTB1XUHwT9uE", lookup_key: "good_month")
 
 
 heroku run rails console   << para interactuar con los datos

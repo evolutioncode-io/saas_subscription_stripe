@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   acts_as_token_authenticatable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:stripe_connect]
 
   validates :fullname, presence: true
 
@@ -16,4 +16,8 @@ class User < ApplicationRecord
      customer = Stripe::Customer.create(email: self.email, name: self.fullname)
      # update(stripe_customer_id: customer.id)  >> se movio a webhooks
    end
+
+   def can_receive_payments?
+    uid? &&  provider? && access_code? && publishable_key?
+  end
 end

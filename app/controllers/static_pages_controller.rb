@@ -11,6 +11,15 @@ class StaticPagesController < ApplicationController
     @pricing_enter = Stripe::Price.list(lookup_keys: ["rp_enter_19900_m", "rp_enter_150000_y" ], expand: ["data.product"]).data.sort_by {|p| p.unit_amount}
 
 
+
+    if current_user.stripe_customer_id
+        # <%= link_to t('learn_more'), "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&scope=read_write", class: "btn btn-primary" %>
+    else
+        # customer = Stripe::Customer.create(email: self.email, name: self.fullname)
+        # update customer Stripe ID
+    end
+
+
   end
 
 end

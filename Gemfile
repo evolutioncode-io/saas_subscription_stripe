@@ -31,6 +31,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'stripe'
+gem 'omniauth'
+gem 'omniauth-stripe-connect'
+
 gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'simple_token_authentication', '~> 1.0'
